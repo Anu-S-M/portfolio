@@ -23,6 +23,7 @@ type NavProps = {
   text: string;
   href: string;
   i: number;
+  capitalize?: boolean; // Add this property to indicate if the text should be capitalized
   className?: string;
 };
 
@@ -37,11 +38,13 @@ const variants = {
 };
 
 const navLinks = [
-  { href: "#home", text: "Home" },
-  { href: "#about", text: "About" },
-  { href: "#projects", text: "Projects" },
-  { href: "#services", text: "Services" },
+  { href: "#Home", text: "home", capitalize: true },
+  { href: "#About", text: "about", capitalize: true },
+  { href: "#Projects", text: "projects", capitalize: true },
+  { href: "#Skills", text: "skills", capitalize: true },
 ];
+
+
 
 function handleClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   const href = e.currentTarget.getAttribute("href");
@@ -68,7 +71,10 @@ function NavItem(props: NavProps) {
         onClick={handleClick}
         className={cn(props.i === 0 && "nav-active", "nav-link")}
       >
-        {props.text}
+        {/* Apply text-transform based on the capitalize prop */}
+        <span className={props.capitalize ? "capitalize" : ""}>
+          {props.text}
+        </span>
       </a>
     </motion.li>
   );
@@ -82,8 +88,8 @@ export default function Container(props: ContainerProps) {
   const { children, ...customMeta } = props;
   const router = useRouter();
   const meta = {
-    title: "Wendo",
-    description: `Full-stack website developer and TypeScript enthusiast.`,
+    title: "Anu",
+    description: `Cyber security enthusiast and Full-stack developer.`,
     image: "/assets/logo.webp",
     type: "website",
     ...customMeta,
@@ -118,26 +124,19 @@ export default function Container(props: ContainerProps) {
         <meta name="robots" content="follow, index" />
         <meta name="theme-color" content="#7B82FE" />
         <meta content={meta.description} name="description" />
-        <meta
-          property="og:url"
-          content={`https://www.wendoj.codes${router.asPath}`}
-        />
-        <link
-          rel="canonical"
-          href={`https://www.wendoj.codes${router.asPath}`}
-        />
+     
         <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="WendoJ" />
+        <meta property="og:site_name" content="Anu" />
         <meta property="og:description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:image" content={meta.image} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="WendoJ" />
+        <meta name="twitter:site" content="Anu" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <link rel="apple-touch-icon" href="/logo_192_192.png" />
       </Head>
       <nav
         className={cn(
@@ -163,7 +162,7 @@ export default function Container(props: ContainerProps) {
           </button>
         </div>
         <Link href="/">
-          <span className="text-lg font-semibold">wendo</span>
+          <span className="text-lg font-semibold">Anu</span>
         </Link>
 
         {/* Desktop menu */}
@@ -219,8 +218,8 @@ export default function Container(props: ContainerProps) {
 
                 {/* Footer */}
                 <div className="flex min-h-fit w-full flex-col space-y-8 px-[22px] py-10">
-                  <span className="text-sm text-muted-foreground">
-                    © {new Date().getFullYear()} wendo. All rights reserved.
+                  <span className="text-xl text-blue text-muted-foreground">
+                    © {new Date().getFullYear()} Anu. All rights reserved.
                   </span>
                 </div>
               </div>

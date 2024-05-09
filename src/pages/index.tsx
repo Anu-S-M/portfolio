@@ -1,5 +1,6 @@
 import Container from "@/components/Container";
-import { useEffect, useRef, Suspense, useState } from "react";
+import React, { useState } from "react";
+import { useEffect, useRef, Suspense} from "react";
 import styles from "@/styles/Home.module.css";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,6 +10,8 @@ import {
   SearchCheck,
   Eye,
   MonitorSmartphone,
+  Linkedin,
+  
 } from "lucide-react";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 import Spline from "@splinetool/react-spline";
@@ -27,46 +30,42 @@ import {
 import VanillaTilt from "vanilla-tilt";
 import { motion } from "framer-motion";
 
-const aboutStats = [
-  { label: "Years of experience", value: "3+" },
-  { label: "Technologies mastered", value: "5+" },
-  { label: "Companies worked with", value: "15+" },
-];
+
 
 const projects = [
   {
     title: "Unqueue",
-    description: "E-commerce platform for selling digital products",
-    image: "/assets/unqueue.webm",
-    href: "https://unqueue.shop/",
+    description: "Cyber Keylogger",
+    image: "/assets/keylogger.jpg",
+    href: "https://github.com/Anu-S-M/Cybersecurity-Keylogger",
   },
   {
     title: "InfiniteVPS",
-    description: "High performance VPS hosting solution",
-    image: "/assets/infinitevps.webm",
+    description: "Supply Chain Management Using Blockchain",
+    image: "/assets/supplychain.webp",
     href: "#",
   },
   {
     title: "TranslateBot",
-    description: "Powerful Multilingual Translation Bot for Discord",
-    image: "/assets/translate_bot.webm",
-    href: "https://translatebot.app/",
+    description: "Renewtronics Deep Learning Models for E-Waste Classification",
+    image: "/assets/renewtronics.jpg",
+    href: "https://github.com/Anu-S-M/Renewtronics-Deeplearning-models",
   },
   {
     title: "Wrona",
-    description: "Robotics-focused technology company",
-    image: "/assets/wrona.jpeg",
-    href: "https://www.wrona.com/",
+    description: "File Integrity Monitor",
+    image: "/assets/fim.png",
+    href: "#",
   },
-  {
-    title: "This website",
-    description: "My personal website",
-    image: "/assets/portfolio.webm",
-    href: "https://github.com/wendoj/portfolio",
-  },
+  // {
+  //   title: "This website",
+  //   description: "My personal website",
+  //   image: "/assets/portfolio.webm",
+  //   href: "https://github.com/wendoj/portfolio",
+  // },
 ];
 
-const services = [
+const Skills = [
   {
     service: "Frontend Development",
     description:
@@ -74,15 +73,15 @@ const services = [
     icon: Code2,
   },
   {
-    service: "UX Design",
+    service: "UI/UX Design",
     description:
       "Building intuitive, user-centric designs that drive engagement and conversion.",
     icon: Frame,
   },
   {
-    service: "SEO Optimization",
+    service: "Cyber Security Techniques",
     description:
-      "Enhancing your website's visibility in search engines for increased organic traffic.",
+      "Deep understanding of both offensive and defensive cybersecurity techniques to the table.",
     icon: SearchCheck,
   },
   {
@@ -94,7 +93,7 @@ const services = [
   {
     service: "Backend Development",
     description:
-      "Developing robust, scalable server-side logic for a wide range of web applications.",
+      "Developing robust, scalable server-side logic for a web applications.",
     icon: Eye,
   },
 ];
@@ -105,6 +104,8 @@ export default function Home() {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
+  const [currentProject, setCurrentProject] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   // handle scroll
   useEffect(() => {
@@ -179,7 +180,7 @@ export default function Home() {
 
         {/* Intro */}
         <section
-          id="home"
+          id="Home"
           data-scroll-section
           className="mt-40 flex w-full flex-col items-center xl:mt-0 xl:min-h-screen xl:flex-row xl:justify-between"
         >
@@ -190,9 +191,7 @@ export default function Home() {
               data-scroll-speed=".09"
               className="flex flex-row items-center space-x-1.5"
             >
-              <span className={styles.pill}>next.js</span>
-              <span className={styles.pill}>tailwindcss</span>
-              <span className={styles.pill}>typescript</span>
+          
             </div>
             <div>
               <h1
@@ -206,7 +205,7 @@ export default function Home() {
                   <br />
                 </span>
                 <span className="clash-grotesk text-gradient text-6xl 2xl:text-8xl">
-                  WendoJ.
+                  Anu.
                 </span>
               </h1>
               <p
@@ -215,7 +214,7 @@ export default function Home() {
                 data-scroll-speed=".06"
                 className="mt-1 max-w-lg tracking-tight text-muted-foreground 2xl:text-xl"
               >
-                An experienced full-stack website developer with a passion for
+                An Cyber Security Student and full-stack developer with a passion for
                 crafting unique digital experiences.
               </p>
             </div>
@@ -225,17 +224,7 @@ export default function Home() {
               data-scroll-speed=".06"
               className="flex flex-row items-center space-x-1.5 pt-6"
             >
-              <Link href="mailto:wendoj@proton.me" passHref>
-                <Button>
-                  Get in touch <ChevronRight className="ml-1 h-4 w-4" />
-                </Button>
-              </Link>
-              <Button
-                variant="outline"
-                onClick={() => scrollTo(document.querySelector("#about"))}
-              >
-                Learn more
-              </Button>
+           
             </span>
 
             <div
@@ -255,54 +244,96 @@ export default function Home() {
             className="mt-14 h-full w-full xl:mt-0"
           >
             <Suspense fallback={<span>Loading...</span>}>
-              <Spline scene="/assets/scene.splinecode" />
-            </Suspense>
+              {/* <Spline scene="/assets/scene.splinecode" /> */}
+      
+
+              <Spline scene="https://draft.spline.design/qIcYt6HSk91a1GeV/scene.splinecode" />
+            </Suspense> 
+     
           </div>
         </section>
 
         {/* About */}
-        <section id="about" data-scroll-section>
+        <section id="About" data-scroll-section className="mt-2">
+
           <div
             data-scroll
             data-scroll-speed=".4"
             data-scroll-position="top"
-            className="my-14 flex max-w-6xl flex-col justify-start space-y-10"
+            className="my-8 flex max-w-6xl flex-col justify-start space-y-10"
           >
-            <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
-              I&apos;m an experienced full-stack developer proficient in{" "}
-              <Link
-                href="https://create.t3.gg/"
-                target="_blank"
-                className="underline"
-              >
-                TypeScript, Tailwind, and Next.js
-              </Link>{" "}
-              since 2021. My experience spans from startups to mid-sized
-              companies, where I&apos;ve been instrumental in the entire product
-              design process; from ideation and wireframing, through
-              prototyping, to the delivery of the final product, all while
-              efficiently collaborating with cross-functional teams.
-            </h2>
-            <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
-              {aboutStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col items-center text-center xl:items-start xl:text-start"
-                >
-                  <span className="clash-grotesk text-gradient text-4xl font-semibold tracking-tight xl:text-6xl">
-                    {stat.value}
-                  </span>
-                  <span className="tracking-tight text-muted-foreground xl:text-lg">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+ <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter mt-1">
+  ✨ About
+</span>
+<h2 className="py-4 pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
+  Hey folks! I&apos;m a cybersecurity student with a knack for developing applications.
+  Want to explore some of my projects together? Let&apos;s dive in!.
+  I&apos;ve been instrumental in the entire product
+  design process; from ideation and wireframing, through
+  prototyping, to the delivery of the final product.
+</h2>
+
+ <br></br>
+           
+           
+            <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
+             ✨ Education
+            </span>
+          
+          <br></br>
+            <Card
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+  className={`${
+    isHovered ? "bg-primary/10" : "bg-transparent"
+  } rounded-md transition duration-300`}
+  style={{ width: '700px', height: '300px',
+  textAlign: 'left',
+        border: '2px solid #ff69b4', // Add the border effect
+        padding: '20px', // Add some padding for better spacing
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        borderRadius: '15px',
+        fontFamily: 'Montserrat, sans-serif',  }}
+>
+
+
+  <CardContent>
+    {/* Add the custom CSS class definition */}
+    <style jsx>{`
+      .text-blue {
+        color: #3182CE; /* Pink color code */
+      }
+      
+    `}</style>
+
+
+   
+    <div className="text-base tracking-tighter text-muted-foreground">
+      <p>
+        <span className="text-xl text-blue font-light leading-normal tracking-tighter text-foreground xl:text-[30px]">College:</span>{" "}
+        <span className="text-xl font-light leading-normal tracking-tighter text-foreground xl:text-[30px]"> Ramaiah Institute of Technology, Bengaluru</span>
+      </p>
+      <p>
+        <span className="text-xl text-blue font-light leading-normal tracking-tighter text-foreground xl:text-[25px]">Branch:</span>{" "}
+        <span className="text-xl font-light leading-normal tracking-tighter text-foreground xl:text-[25px]"> Computer Science and Engineering (Cyber Security)</span>
+      </p>
+      <p>
+        <span className="text-xl text-blue font-light leading-normal tracking-tighter text-foreground xl:text-[25px]">Year:</span>{" "}
+        <span className="text-xl font-light leading-normal tracking-tighter text-foreground xl:text-[25px]"> 2021 - 2025</span>
+      </p>
+    </div>
+  </CardContent>
+</Card>
+</div>
+
+</section>
+
 
         {/* Projects */}
-        <section id="projects" data-scroll-section>
+        <section id="Projects" data-scroll-section className="mt-4">
           {/* Gradient */}
           <div className="relative isolate -z-10">
             <div
@@ -318,81 +349,71 @@ export default function Home() {
               />
             </div>
           </div>
-          <div data-scroll data-scroll-speed=".4" className="my-64">
-            <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
-              ✨ Projects
-            </span>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
-              Streamlined digital experiences.
-            </h2>
-            <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;ve worked on a variety of projects, from small websites to
-              large-scale web applications. Here are some of my favorites:
-            </p>
+          <div data-scroll data-scroll-speed=".4" className="my-4">
+    <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
+      ✨ Projects
+    </span>
+    <br></br>
+    <br></br>
+    <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
+    Here are some of my favorites
+    </h2>
+    <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
+      I&apos;ve been working on a variety of projects
+    </p>
 
-            {/* Carousel */}
-            <div className="mt-14">
-              <Carousel setApi={setCarouselApi} className="w-full">
-                <CarouselContent>
-                  {projects.map((project) => (
-                    <CarouselItem key={project.title} className="md:basis-1/2">
-                      <Card id="tilt">
-                        <CardHeader className="p-0">
-                          <Link href={project.href} target="_blank" passHref>
-                            {project.image.endsWith(".webm") ? (
-                              <video
-                                src={project.image}
-                                autoPlay
-                                loop
-                                muted
-                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
-                              />
-                            ) : (
-                              <Image
-                                src={project.image}
-                                alt={project.title}
-                                width={600}
-                                height={300}
-                                quality={100}
-                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
-                              />
-                            )}
-                          </Link>
-                        </CardHeader>
-                        <CardContent className="absolute bottom-0 w-full bg-background/50 backdrop-blur">
-                          <CardTitle className="border-t border-white/5 p-4 text-base font-normal tracking-tighter">
-                            {project.description}
-                          </CardTitle>
-                        </CardContent>
-                      </Card>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
-              <div className="py-2 text-center text-sm text-muted-foreground">
-                <span className="font-semibold">
-                  {current} / {count}
-                </span>{" "}
-                projects
-              </div>
-            </div>
-          </div>
+    {/* Project Grid */}
+    <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
+      {projects.map((service) => (
+        <div key={service.title} className="md:basis-1/2">
+          <Card id="tilt">
+            <CardHeader className="p-0">
+              <Link href={service.href} target="_blank" passHref>
+                {service.image.endsWith(".webm") ? (
+                  <video
+                    src={service.image}
+                    autoPlay
+                    loop
+                    muted
+                    className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    width={600}
+                    height={300}
+                    quality={100}
+                    className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
+                  />
+                )}
+              </Link>
+            </CardHeader>
+            <CardContent className="absolute bottom-0 w-full bg-background/50 backdrop-blur">
+              <CardTitle className="border-t border-white/5 p-4 text-base font-normal tracking-tighter">
+                {service.description}
+              </CardTitle>
+            </CardContent>
+          </Card>
+        </div>
+      ))}
+    </div>
+  </div>
         </section>
 
-        {/* Services */}
-        <section id="services" data-scroll-section>
+        {/* Skills */}
+        <section id="Skills" data-scroll-section>
           <div
             data-scroll
             data-scroll-speed=".4"
             data-scroll-position="top"
-            className="my-24 flex flex-col justify-start space-y-10"
+            className="my-8 flex flex-col justify-start space-y-10"
           >
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{
+                
                 duration: 1,
                 staggerChildren: 0.5,
               }}
@@ -401,18 +422,15 @@ export default function Home() {
             >
               <div className="flex flex-col py-6 xl:p-6">
                 <h2 className="text-4xl font-medium tracking-tight">
-                  Need more info?
+                  Skills
                   <br />
                   <span className="text-gradient clash-grotesk tracking-normal">
                     I got you.
                   </span>
                 </h2>
-                <p className="mt-2 tracking-tighter text-secondary-foreground">
-                  Here are some of the services I offer. If you have any
-                  questions, feel free to reach out.
-                </p>
+              
               </div>
-              {services.map((service) => (
+              {Skills.map((service) => (
                 <div
                   key={service.service}
                   className="flex flex-col items-start rounded-md bg-white/5 p-14 shadow-md backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:shadow-md"
@@ -421,7 +439,7 @@ export default function Home() {
                   <span className="text-lg tracking-tight text-foreground">
                     {service.service}
                   </span>
-                  <span className="mt-2 tracking-tighter text-muted-foreground">
+                  <span className="mt- tracking-tighter text-muted-foreground">
                     {service.description}
                   </span>
                 </div>
@@ -430,27 +448,48 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact */}
-        <section id="contact" data-scroll-section className="my-64">
-          <div
-            data-scroll
-            data-scroll-speed=".4"
-            data-scroll-position="top"
-            className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-br from-primary/[6.5%] to-white/5 px-8 py-16 text-center xl:py-24"
-          >
-            <h2 className="text-4xl font-medium tracking-tighter xl:text-6xl">
-              Let&apos;s work{" "}
-              <span className="text-gradient clash-grotesk">together.</span>
-            </h2>
-            <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;m currently available for freelance work and open to
-              discussing new projects.
-            </p>
-            <Link href="mailto:wendoj@proton.me" passHref>
-              <Button className="mt-6">Get in touch</Button>
-            </Link>
-          </div>
-        </section>
+    
+<section
+  id="contact"
+  data-scroll-section
+  className="my-60"
+  style={{
+    border: "2px solid #ff69b4", // Add the border effect
+    borderRadius: "15px", // Rounded corners
+    padding: "20px", // Add some padding for better spacing
+    transition: "border-color 0.3s ease", // Add transition effect
+  }}
+>
+  <div
+    data-scroll
+    data-scroll-speed=".4"
+    data-scroll-position="top"
+    className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-br from-primary/[6.5%] to-white/5 px-8 py-16 text-center xl:py-24"
+    style={{
+      border: isHovered ? "2px solid #ff69b4" : "2px solid transparent", // Hover effect
+    }}
+  >
+    <h2 className="text-4xl font-medium tracking-tighter xl:text-6xl">
+      Get in
+      <span className="text-gradient clash-grotesk"> touch.</span>
+    </h2>
+
+    <div className="mt-6 flex space-x-4">
+      <Link href="mailto:subwift06@gmail.com" passHref>
+        <Button>Mail me</Button>
+      </Link>
+      <Link href="https://www.linkedin.com/anu-s-m" passHref>
+      <Button>LinkedIn</Button>
+      </Link>
+      <Link href="https://www.linkedin.com/Anu-S-M" passHref>
+      <Button>GitHub</Button>
+      </Link>
+     
+    </div>
+  </div>
+</section>
+
+
       </div>
     </Container>
   );
